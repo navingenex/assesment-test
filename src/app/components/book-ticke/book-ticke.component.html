@@ -1,0 +1,24 @@
+<section style="margin-top: 5%">
+  <div class="lead">Book Ticket</div>
+  <hr>
+  <div class="row">
+    <form  #f="ngForm" (ngSubmit)="bookSeat()">
+      <div class="col-xs-6">
+        <p>
+          <label for="">Seat:</label>
+          <input type="text" name="seat" class="form-control"  [(ngModel)]="noOfSeats" placeholder="How many seats ?" required>
+        </p>
+        <p>
+          <button type="submit" class="btn btn-success" [disabled]="!f.valid">Submit</button>
+        </p>
+      </div>
+      <div class="col-xs-6">
+          <div *ngFor="let rs of row">
+            <span style="margin: 5px;" *ngFor="let seat of rs.row" >
+              <span [style.background-color]="seat.status?'red':'green'">{{seat.seatno}}</span>
+            </span>
+          </div>
+      </div>
+    </form>
+  </div>
+</section>
