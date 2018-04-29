@@ -38,7 +38,6 @@ export class BookTickeComponent implements OnInit {
       }
       this.noOfSeats = null;
       this.seat = [];
-      // this.seat = this.row[this.bookedRow].row;
       this.flashMessage.show('Seats booked successfully', { cssClass: 'alert-success lead', timeout: 3000 });
       for (let i = this.row[this.bookedRow].pos; i < this.row[this.bookedRow].row.length; i++) {
         this.seat.push(this.row[this.bookedRow].row[i]);

@@ -6,18 +6,20 @@ export class BookSeats {
     totalVacantSeat = 0;
     vacantSeatRows = [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 3];
     constructor() { }
-
+    // Initializing coach with 80  seats and rows
     public initCoach() {
         let rows: Row[] = [];
         let seats: Seats[] = [];
         let seatno = 1;
         for (let i = 0; i < 12; i++) {
             if (i === 11) {
+                // Last row initialization with 3 seats
                 for (let j = 0; j < 3; j++) {
                     const seat = new Seats(seatno++, false);
                     seats.push(seat);
                 }
             } else {
+                // initializinig 7 seats in a row
                 for (let j = 0; j < 7; j++) {
                     const seat = new Seats(seatno++, false);
                     seats.push(seat);
@@ -28,6 +30,7 @@ export class BookSeats {
             seats = [];
         }
         rows[11].vacantSeat = 3;
+        console.log(rows);
         return rows;
     }
     // validate input
@@ -89,9 +92,6 @@ export class BookSeats {
                     row.bookedSeat = Number(noofseats);
                 }
             }
-            // if (index === 11) {
-            //     row.vacantSeat = 0;
-            // }
             row.vacantSeat = 0;
         }
         // if input seat is less or equal to vacantseat in a row
