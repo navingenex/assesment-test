@@ -1,0 +1,14 @@
+.seat-decoration{
+    border-radius: 5px;
+    padding: 2px;
+    margin: 2px;
+    border: black solid 2px;
+
+}
+.row-decoration{
+    margin: 10px;
+}
+
+.pad{
+    padding: 5px;
+}

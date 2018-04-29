@@ -11,6 +11,8 @@ import { BookSeats } from '../../services/book-seats';
 export class BookTickeComponent implements OnInit {
   seat: Seats[] = [];
   row: Row[] = [];
+  bookedRow = 0;
+  seatStartPos: number;
   noOfSeats: number;
   constructor(private bookSeatsService: BookSeats) {
     this.row = this.bookSeatsService.initCoach();
@@ -20,8 +22,14 @@ export class BookTickeComponent implements OnInit {
   }
 
   bookSeat() {
-    this.bookSeatsService.bookSeats(this.row, this.noOfSeats);
+    this.bookedRow = this.bookSeatsService.bookSeats(this.row, this.noOfSeats);
     this.noOfSeats = null;
+    this.seat = [];
+    // this.seat = this.row[this.bookedRow].row;
+    for (let i = this.row[this.bookedRow].pos; i < this.row[this.bookedRow].row.length; i++) {
+      this.seat.push(this.row[this.bookedRow].row[i]);
+      console.log(i);
+    }
     console.log(this.row);
   }
 

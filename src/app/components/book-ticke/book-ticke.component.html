@@ -2,23 +2,37 @@
   <div class="lead">Book Ticket</div>
   <hr>
   <div class="row">
-    <form  #f="ngForm" (ngSubmit)="bookSeat()">
-      <div class="col-xs-6">
+    <div class="col-lg-4">
+      <form #f="ngForm" (ngSubmit)="bookSeat()">
         <p>
           <label for="">Seat:</label>
-          <input type="text" name="seat" class="form-control"  [(ngModel)]="noOfSeats" placeholder="How many seats ?" required>
+          <input type="text" name="seat" class="form-control" [(ngModel)]="noOfSeats" placeholder="How many seats ?" required>
         </p>
         <p>
           <button type="submit" class="btn btn-success" [disabled]="!f.valid">Submit</button>
         </p>
+      </form>
+    </div>
+    <div class="col-lg-4">
+      <span class="lead pad" style="background-color: #808080;color:white">Booked</span>
+      <span class="lead pad" style="background-color: green;color:white">Empty</span>
+      <hr>
+      <div class="row-decoration" *ngFor="let rs of row">
+        <span *ngFor="let seat of rs.row">
+          <span class="seat-decoration" style="margin: 5px;color:white;" [style.background-color]="seat.status?'#808080':'green'">{{seat.seatno}}</span>
+        </span>
       </div>
-      <div class="col-xs-6">
-          <div *ngFor="let rs of row">
-            <span style="margin: 5px;" *ngFor="let seat of rs.row" >
-              <span [style.background-color]="seat.status?'red':'green'">{{seat.seatno}}</span>
-            </span>
-          </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="lead">Your booked seats are</div>
+      <hr>
+      <div *ngIf="seat.length>0">
+        <span *ngFor="let seatno of seat">
+          <span *ngIf="seatno.status">
+            {{seatno.seatno}}
+          </span>
+        </span>
       </div>
-    </form>
+    </div>
   </div>
 </section>
