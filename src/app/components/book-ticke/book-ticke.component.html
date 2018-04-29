@@ -3,6 +3,7 @@
   <hr>
   <div class="row">
     <div class="col-lg-4">
+        <p *ngIf="message!==''" [style.color]="message===''?'':'red'" >{{message}}</p>
       <form #f="ngForm" (ngSubmit)="bookSeat()">
         <p>
           <label for="">Seat:</label>
@@ -28,7 +29,7 @@
       <hr>
       <div *ngIf="seat.length>0">
         <span *ngFor="let seatno of seat">
-          <span *ngIf="seatno.status">
+          <span class="lead" *ngIf="seatno.status">
             {{seatno.seatno}}
           </span>
         </span>

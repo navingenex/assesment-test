@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BookTickeComponent } from './components/book-ticke/book-ticke.component';
 import { BookSeats } from './services/book-seats';
-
+ 
+import {FlashMessagesModule} from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BookSeats } from './services/book-seats';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [BookSeats],
   bootstrap: [AppComponent]

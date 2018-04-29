@@ -30,6 +30,14 @@ export class BookSeats {
         rows[11].vacantSeat = 3;
         return rows;
     }
+    // validate input
+    validateInput(noOfSeats: number) {
+        if ((Number(noOfSeats) < 1 || Number(noOfSeats) > 7) || (isNaN(noOfSeats))) {
+            return false;
+        }
+    }
+
+
     // Total vacant seat
     getTotalVacantSeat(row: Row[]): number {
         this.totalVacantSeat = 0;
@@ -44,12 +52,10 @@ export class BookSeats {
         let availableRowindex = 0;
         availableRowindex = this.availabeSeats(row, noofseat);
         if (availableRowindex < 0) {
-            console.log('no seats are available');
             return -1;
         }
         row[availableRowindex] = this.reserveSeats(row[availableRowindex], noofseat, availableRowindex);
         this.vacantSeatRows[availableRowindex] = row[availableRowindex].vacantSeat;
-        console.log(this.vacantSeatRows);
         return availableRowindex;
     }
 
@@ -57,7 +63,6 @@ export class BookSeats {
     availabeSeats(row: Row[], noofseat: number) {
         let index = 0;
         let maxVacantRow = Math.max.apply(0, this.vacantSeatRows);
-        console.log(maxVacantRow, +'' + this.totalVacantSeat);
         if (this.getTotalVacantSeat(row) < Number(noofseat)) {
             return -1;
         }
@@ -75,7 +80,7 @@ export class BookSeats {
 
     // resrving seats
     reserveSeats(row: any, noofseats: number, index) {
-        const pos = row.bookedSeat;
+        row.pos = row.bookedSeat;
         // if full row is empty then reserve ticket
         if (Number(noofseats) === row.row.length) {
             for (let i = 0; i < Number(noofseats); i++) {
@@ -104,7 +109,7 @@ export class BookSeats {
             }
 
         }
-        row.pos = pos;
+        row.pos = row.pos;
 
         return row;
     }
